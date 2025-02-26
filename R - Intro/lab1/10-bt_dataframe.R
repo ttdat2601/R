@@ -46,7 +46,8 @@ women <- rbind(women, new_rows)
 # c) Thêm cột "shoe_size" với giá trị nguyên ngẫu nhiên từ 35 đến 42
 set.seed(42)  # Để kết quả có thể lặp lại
 women$shoe_size <- sample(35:42, nrow(women), replace = TRUE)
-
+#Cach 2: dung lenh runif:
+women$shoe_size <- floor(runif(nrow(women), min=35, max=43))
 # Hiển thị dataframe sau khi chỉnh sửa
 print(women)
 
