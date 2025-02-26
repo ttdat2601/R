@@ -11,11 +11,11 @@
 
 
 # 1. Tạo và thêm tên duy nhất vào năm vector có độ dài 8, với các kiểu dữ liệu đa dạng
-vec1 <- 1:8                          
-vec2 <- c(2.5, 3.1, 4.7, 5.6, 6.2, 7.8, 8.9, 9.4)  
-vec3 <- letters[1:8]                
-vec4 <- as.logical(c(1, 0, 1, 1, 0, 0, 1, 0))  
-vec5 <- as.Date("2024-01-01") + 0:7  
+vec1 <- 1:8                          # Số nguyên
+vec2 <- c(2.5, 3.1, 4.7, 5.6, 6.2, 7.8, 8.9, 9.4)  # Số thực
+vec3 <- letters[1:8]                 # Ký tự
+vec4 <- as.logical(c(1, 0, 1, 1, 0, 0, 1, 0))  # Boolean
+vec5 <- as.Date("2024-01-01") + 0:7  # Ngày tháng
 
 # Tạo dataframe mySet1
 mySet1 <- data.frame(vec1, vec2, vec3, vec4, vec5)
@@ -30,5 +30,23 @@ colnames(mySet1)[2] <- "column02"
 print(mySet1[1:7, ])     # Cách 1: Sử dụng chỉ số
 print(head(mySet1, 7))   # Cách 2: Sử dụng hàm head()
 
+# 2. Hiển thị mỗi dòng thứ 3 giữa quan sát thứ 40 và 120 của iris trong một dòng lệnh duy nhất
+print(iris[seq(40, 120, by=3), ])
 
-# 2. Su dung bo du lieu Iris
+# 3. Sử dụng bộ dữ liệu "women"
+data(women)
+
+# a) Chuyển kiểu của cột đầu tiên thành kiểu ký tự
+women$height <- as.character(women$height)
+
+# b) Thêm hai dòng mới vào bộ dữ liệu mà không làm mất kiểu của dataframe chính
+new_rows <- data.frame(height = as.character(c(75, 80)), weight = c(180, 200))
+women <- rbind(women, new_rows)
+
+# c) Thêm cột "shoe_size" với giá trị nguyên ngẫu nhiên từ 35 đến 42
+set.seed(42)  # Để kết quả có thể lặp lại
+women$shoe_size <- sample(35:42, nrow(women), replace = TRUE)
+
+# Hiển thị dataframe sau khi chỉnh sửa
+print(women)
+

@@ -1,0 +1,87 @@
+#Data Frame trong R
+#DataFrame là caáu truvs dữ liệu dùng để lưu trữ dữ liệu
+#danh bảng trong R (phổ biến nhất cho phân tích thống kê
+#và machine learning). DataFrame có thể đc xem là một danh sách các vector có cùng
+# độ dài và thường có tên duy nhất
+
+
+# Tạo DataFrame 
+# Dataframe đc tạo từ các vector có cùng độ dài nhưng có thể có 
+
+
+column1 <- c(1:3)
+column2 <- c("Dat", "Tom", "Ha")
+column3 <- c(T, T, F)
+
+dataset1 <- data.frame(column1, column2, column3)
+dataset1
+
+#Ten cac cot
+colnames(dataset1)
+# Doi ten cot 2
+colnames(dataset1)[2] <- "name"
+dataset1
+
+#Doi ten nhieu cot
+colnames(dataset1) <- c("#", "name", "check")
+dataset1
+
+#2. Them mot dong moi
+newRow <- c(4, "Duong Domic", T)
+dataset2 <- rbind(dataset1, newRow)
+dataset2
+
+newRowDF <- data.frame(5, "Lisa", F)
+names(newRowDF) <- c("#", "name", "check")
+dataset3 <- rbind(dataset2, newRowDF)
+dataset3
+
+#3. Them cot moi
+newColumn <- c("a", "b", "c")
+dataset4 <- cbind(dataset1, newColumn)
+dataset4
+
+dataset4$newColumn2 <- c(1,2,3)
+dataset4
+
+#4. Truy xuat du lieu
+#Truy xuat bang chi so
+dataset4[3,2] #dong 3, cot 2
+
+#Truy xuat bang chi so va ten
+dataset4[2, "check"]
+
+#TRuy xuat bang ten cot
+dataset4["name"]
+dataset4[, "name"]
+dataset4$name
+
+
+#5. Mot so ham can nho
+#Cac ham huu ich de kiem tra du lieu
+#head() : hien thi vai dong dau
+#tail() : hien thi vai dong cuoi
+#str()  : hien thi cau truc du lieu
+#summary() : tom tat thong ke
+head(dataset4)
+tail(dataset4)
+str(dataset4)
+summary(dataset4)
+
+
+#6. Thay doi kieu du lieu cua cot
+class(dataset4$check)
+dataset4$check <- as.integer(dataset4$check)
+dataset4
+
+# 7. Build-in data frames
+data() # Lay ra toan bo dataset duoc build R
+iris
+View(iris)
+
+
+head(iris)
+tail(iris)
+summary(iris)  
+
+
